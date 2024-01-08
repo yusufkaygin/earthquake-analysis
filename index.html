@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" icerik="IE=edge" />
+  <meta name="viewport" icerik="width=device-width, initial-scale=1.0" />
+  <title>Bitirme odevi</title>
+
+  <!-- Leaflet Marker Cluster CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+  <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />
+  <label for="drawer-toggle" id="drawer-toggle-label"></label>
+  <div class="header">
+    <!-- SIRALAMA DEGISTIRME -->
+    <img src="./images/logo.png" alt="">
+    <div></div>
+    <div>Toplam <span>0</span> deprem</div>
+  </div>
+  <nav id="drawer">
+    <div class="sidebar">
+      <h3>Deprem Filtresi</h3>
+      <form>
+
+        <div class="form-group">
+          <label for="date">Başlangıç Deprem Tarihini Seçiniz. </label>
+          <input type="date" id="date" name="date">
+        </div>
+
+        <div class="form-group">
+          <label for="date">Bitiş Deprem Tarihini Seçiniz. </label>
+          <input type="date" id="endDate" name="date">
+        </div>
+
+        <div class="form-group">
+          <label for="keyword">Deprem Büyüklüğü</label>
+          <div class="mag-container">
+            <select id="mag1">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+            <span>ile</span>
+            <select id="mag2">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+            <span>arası depremler</span>
+          </div>
+        </div>
+
+        <hr>
+
+        <button id="faultLine">Fay haritasını göster</button>
+
+        <hr>
+
+
+
+        <div class="form-group tab-btn">
+          <button id="positional" class="active">Konum Seçiniz</button>
+          <button id="areal">Alan Seçiniz</button>
+        </div>
+
+        <div class="form-group positional-container">
+          <label for="date">Konumunuzu Giriniz.</label>
+          <div>
+            <input type="text" placeholder="41.0151 (enlem)" id="lat-input">
+            <input type="text" placeholder="28.9795 (boylam)" id="lng-input">
+            <input type="text" placeholder="Alan (km)" id="user-radius">
+            <div class="info-text" style="color: green;">Km belirtiniz ve istediğiniz konumun enlem-boylam bilgilerini
+              giriniz.</div>
+          </div>
+        </div>
+
+        <div class="form-group areal-container">
+          <label class="checkbox-container">
+            <span class="checkmark"></span>
+            <input type="text" id="area-input" placeholder="Alan (KM)">
+            <div class="info-text" style="color: red;">Km belirtiniz ve imleci istediğiniz konuma getiriniz.</div>
+        </div>
+      </form>
+      <button id="submit" type="submit">Getir</button>
+    </div>
+  </nav>
+  <div id="page-content">
+    <div id="map"></div>
+  </div>
+
+
+  <div id="area-menu" class="menu">
+    <ul>
+    </ul>
+  </div>
+
+  <div id="map"></div>
+  <div id="loading" class="loading">
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Api Bağlantısı Kuruluyor</p>
+    </div>
+  </div>
+
+
+
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
